@@ -1,0 +1,4 @@
+backend/models/gru_final_model.h5 filter=lfs diff=lfs merge=lfs -text
+backend/models/lstm_final_model.h5 filter=lfs diff=lfs merge=lfs -text
+backend/models/rnn_final_model.h5 filter=lfs diff=lfs merge=lfs -text
+backend/tokenizers/tokenizer_gru.pkl filter=lfs diff=lfs merge=lfs -text

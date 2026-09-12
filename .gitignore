@@ -11,10 +11,7 @@ dist/
 frontend/dist/
 
 # ML assets (large binary files - not committed to Git)
-backend/models/*.h5
-backend/models/*.keras
-backend/tokenizers/*.pkl
-backend/embeddings/*.txt
+
 
 # Env
 .env
