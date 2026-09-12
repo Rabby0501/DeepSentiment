@@ -17,7 +17,8 @@ from app.core.model_manager import ModelLoadError, model_manager
 from app.preprocessing.text_preprocessor import clean_text
 
 logger = logging.getLogger(__name__)
-
+model = model_manager.get_model(model_name)
+tokenizer = model_manager.get_tokenizer(model_name)
 
 class PredictionError(Exception):
     """Raised for any error that prevents producing a prediction."""
