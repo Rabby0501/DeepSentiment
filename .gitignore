@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+frontend/dist/
+
+# ML assets (large binary files - not committed to Git)
+backend/models/*.h5
+backend/models/*.keras
+backend/tokenizers/*.pkl
+backend/embeddings/*.txt
+
+# Env
+.env
+*.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/

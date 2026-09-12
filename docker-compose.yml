@@ -1,0 +1,46 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: deepsentiment-backend
+    ports:
+      - "8000:8000"
+    environment:
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+      ALLOWED_ORIGINS: "http://localhost:5173,http://127.0.0.1:5173"
+      MODELS_DIR: /app/models
+      TOKENIZERS_DIR: /app/tokenizers
+      EMBEDDINGS_DIR: /app/embeddings
+    volumes:
+      - ./backend/models:/app/models:ro
+      - ./backend/tokenizers:/app/tokenizers:ro
+      - ./backend/embeddings:/app/embeddings:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - deepsentiment-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: deepsentiment-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - deepsentiment-net
+
+networks:
+  deepsentiment-net:
+    driver: bridge
